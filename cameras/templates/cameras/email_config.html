@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Configuration{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-envelope"></i> Email Configuration
+                </h4>
+                <div>
+                    <a href="{% url 'dashboard' %}" class="btn btn-sm btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <h5 class="mb-3"><i class="bi bi-gear"></i> SMTP Settings</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.email_host.label }}</label>
+                                {{ form.email_host }}
+                                {% if form.email_host.help_text %}
+                                <small class="form-text text-muted">{{ form.email_host.help_text }}</small>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.email_port.label }}</label>
+                                {{ form.email_port }}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.email_host_user.label }}</label>
+                                {{ form.email_host_user }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.email_host_password.label }}</label>
+                                {{ form.email_host_password }}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                {{ form.email_use_tls }}
+                                <label class="form-check-label">{{ form.email_use_tls.label }}</label>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        
+                        <h5 class="mb-3"><i class="bi bi-bell"></i> Alert Settings</h5>
+                        <div class="mb-3">
+                            <label class="form-label">{{ form.alert_recipients.label }}</label>
+                            {{ form.alert_recipients }}
+                            {% if form.alert_recipients.help_text %}
+                            <small class="form-text text-muted">{{ form.alert_recipients.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-check mb-2">
+                                    {{ form.send_daily_report }}
+                                    <label class="form-check-label">{{ form.send_daily_report.label }}</label>
+                                </div>
+                                <div class="form-check">
+                                    {{ form.send_alerts_for_critical }}
+                                    <label class="form-check-label">{{ form.send_alerts_for_critical.label }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.alert_threshold.label }}</label>
+                                {{ form.alert_threshold }}
+                                {% if form.alert_threshold.help_text %}
+                                <small class="form-text text-muted">{{ form.alert_threshold.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">{{ form.daily_check_time.label }}</label>
+                            {{ form.daily_check_time }}
+                            {% if form.daily_check_time.help_text %}
+                            <small class="form-text text-muted">{{ form.daily_check_time.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'send_test_email' %}" class="btn btn-info me-2">
+                                <i class="bi bi-envelope-check"></i> Send Test Email
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Configuration
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card border-info">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="bi bi-info-circle"></i> Email Setup Guide</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>For Gmail:</h6>
+                            <ol class="small">
+                                <li>Go to Google Account → Security</li>
+                                <li>Enable 2-Step Verification</li>
+                                <li>Create an App Password</li>
+                                <li>Use that password here</li>
+                            </ol>
+                            
+                            <h6>Daily Reports Include:</h6>
+                            <ul class="small">
+                                <li>List of all down cameras</li>
+                                <li>CSV attachment with details</li>
+                                <li>Uptime statistics</li>
+                                <li>Critical camera alerts</li>
+                            </ul>
+                            
+                            <h6>Test Email:</h6>
+                            <p class="small">Click "Send Test Email" to verify your configuration.</p>
+                            
+                            <div class="alert alert-warning small">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                <strong>Note:</strong> Email passwords are stored in plain text in settings.
+                                For production, use environment variables.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

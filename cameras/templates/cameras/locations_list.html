@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Locations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-geo-alt"></i> Locations
+                    <span class="badge bg-secondary ms-2">{{ total_locations }} locations</span>
+                </h4>
+                <div>
+                    <a href="{% url 'download_all_locations' %}" class="btn btn-success btn-sm">
+                        <i class="bi bi-download"></i> Download All as ZIP
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-arrow-left"></i> Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if locations %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Location Name</th>
+                            <th>Total Cameras</th>
+                            <th>Online</th>
+                            <th>Offline</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for location in locations %}
+                        <tr>
+                            <td>
+                                <strong>{{ location.name }}</strong>
+                            </td>
+                            <td>
+                                <span class="badge bg-primary">{{ location.camera_count }}</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-success">{{ location.up_count }}</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-danger">{{ location.down_count }}</span>
+                            </td>
+                            <td>
+                                {% if location.camera_count > 0 %}
+                                    {% with uptime=location.up_count|floatformat:0 %}
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-success" 
+                                             style="width: {{ location.up_count|divisibleby:location.camera_count|default:0|floatformat:0 }}%">
+                                            {{ location.up_count|divisibleby:location.camera_count|default:0|floatformat:0 }}%
+                                        </div>
+                                    </div>
+                                    {% endwith %}
+                                {% else %}
+                                    <span class="text-muted">No data</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'download_location' %}?location={{ location.name|urlencode }}" 
+                                       class="btn btn-outline-success">
+                                        <i class="bi bi-download"></i> CSV
+                                    </a>
+                                    <a href="{% url 'camera_list' %}?location={{ location.name }}" 
+                                    class="btn btn-outline-primary">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-4">
+                <div class="alert alert-info">
+                    <h5><i class="bi bi-info-circle"></i> Download Options</h5>
+                    <ul class="mb-0">
+                        <li><strong>Individual Location CSV:</strong> Click the "CSV" button next to each location</li>
+                        <li><strong>All Locations ZIP:</strong> Click "Download All as ZIP" to get separate CSV files for each location</li>
+                        <li><strong>Complete Status:</strong> <a href="{% url 'download_csv' %}">Download all cameras</a> in one CSV file</li>
+                        <li><strong>History:</strong> <a href="{% url 'download_history' %}">Download complete history</a> as CSV</li>
+                    </ul>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-geo-alt display-1 text-muted"></i>
+                <h4 class="mt-3">No Locations Found</h4>
+                <p class="text-muted">No cameras with location data found in the system.</p>
+                <a href="{% url 'dashboard' %}" class="btn btn-primary">
+                    <i class="bi bi-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

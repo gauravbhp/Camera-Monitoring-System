@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Auto Camera Monitor{% endblock %}
+
+{% block extra_js %}
+<script>
+function updateTime() {
+    const now = new Date();
+    const nextCheck = new Date("{{ monitor_info.next_check }}");
+    const diff = Math.floor((nextCheck - now) / 1000);
+    
+    let timeStr = "";
+    if (diff > 0) {
+        const minutes = Math.floor(diff / 60);
+        const seconds = diff % 60;
+        timeStr = `Next check in: ${minutes}m ${seconds}s`;
+    } else {
+        timeStr = "Checking now...";
+    }
+    
+    document.getElementById('next-check-timer').textContent = timeStr;
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+
+setTimeout(() => {
+    window.location.reload();
+}, 30000);
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <!-- ===== TOP STATUS CARD ===== -->
+    {% comment %} <div class="row justify-content-center mb-4">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="mb-0">Auto Camera Monitoring Dashboard</h4>
+                </div>
+
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5>Monitoring Status</h5>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-{% if monitor_info.is_running %}play-circle-fill text-success{% else %}stop-circle-fill text-danger{% endif %} me-2 fs-4"></i>
+                            <div>
+                                <strong>{% if monitor_info.is_running %}ACTIVE{% else %}INACTIVE{% endif %}</strong>
+                                <div class="text-muted small">
+                                    <i class="bi bi-calendar-check"></i> {{ monitor_info.check_interval }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Daily Check</h5>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock-history me-2 fs-4"></i>
+                            <div>
+                                <div><strong>Last: {{ monitor_info.last_check }}</strong></div>
+                                <div><strong>Next: {{ monitor_info.next_check }}</strong></div>
+                                <div id="next-check-timer" class="text-muted small">
+                                    {{ monitor_info.time_until_next }} remaining
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Info Row -->
+                <div class="row p-3 border-top">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <small class="text-muted">
+                                    <i class="bi bi-info-circle"></i>
+                                    Check Type: <strong>{{ monitor_info.check_type|default:"DAILY" }}</strong>
+                                </small>
+                            </div>
+                            <div>
+                                <small class="text-muted">
+                                    <i class="bi bi-camera"></i>
+                                    Total Cameras: <strong>{{ monitor_info.total_cameras }}</strong>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    <!-- ===== QUICK ACTION + STATS ===== -->
+    <div class="row mb-4 align-items-stretch">
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="mb-3">Quick Actions</h5>
+                    <div class="d-grid gap-2">
+                        {% comment %} <a href="{% url 'run_check' %}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-arrow-repeat"></i> Run Check Now
+                        </a> {% endcomment %}
+                        <a href="{% url 'download_csv' %}" class="btn btn-success btn-sm">
+                            <i class="bi bi-download"></i> Download Report
+                        </a>
+                        {% comment %} <a href="{% url 'camera_list' %}" class="btn btn-info btn-sm">
+                            <i class="bi bi-camera-video"></i> View All Cameras
+                        </a>
+                        <a href="{% url 'locations_list' %}" class="btn btn-primary btn-sm">
+                            <i class="bi bi-geo-alt"></i> View Locations
+                        </a> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 mb-3">
+            <div class="card text-white bg-primary h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h1 class="display-5">{{ stats.total_cameras }}</h1>
+                    <p class="mb-0">Total Cameras</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 mb-3">
+            <div class="card text-white bg-success h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h1 class="display-5">{{ stats.up_cameras }}</h1>
+                    <p class="mb-0">Online</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 mb-3">
+            <div class="card text-white bg-danger h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h1 class="display-5">{{ stats.down_cameras }}</h1>
+                    <p class="mb-0">Offline</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white bg-info h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h1 class="display-5">{{ stats.uptime_percentage|floatformat:1 }}%</h1>
+                    <p class="mb-0">Uptime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT - LOCATION SUMMARY ===== -->
+    <div class="row mb-4">
+        {% comment %} <div class="col-lg-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-camera-video"></i> Camera Status Overview
+                        <span class="badge bg-secondary float-end">{{ cameras|length }} cameras</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if cameras %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>IP</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Ports</th>
+                                    <th>Last Seen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cameras|slice:":15" %}
+                                <tr>
+                                    <td><strong>{{ item.camera.name }}</strong></td>
+                                    <td><code>{{ item.camera.ip }}</code></td>
+                                    <td>{{ item.camera.location }}</td>
+                                    <td>
+                                        {% if item.status.ping == 'UP' %}
+                                            <span class="status-badge status-up">ONLINE</span>
+                                        {% elif item.status.ping == 'DOWN' %}
+                                            <span class="status-badge status-down">OFFLINE</span>
+                                        {% else %}
+                                            <span class="status-badge status-unknown">{{ item.status.ping }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.camera.critical == 'YES' %}
+                                            <span class="badge bg-danger">CRITICAL</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">NORMAL</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <small>
+                                            {% if item.status.rtsp != 'N/A' %}
+                                                <span class="{% if item.status.rtsp == 'UP' %}text-success{% else %}text-danger{% endif %} me-2">RTSP</span>
+                                            {% endif %}
+                                            {% if item.status.http != 'N/A' %}
+                                                <span class="{% if item.status.http == 'UP' %}text-success{% else %}text-danger{% endif %} me-2">HTTP</span>
+                                            {% endif %}
+                                            {% if item.status.https != 'N/A' %}
+                                                <span class="{% if item.status.https == 'UP' %}text-success{% else %}text-danger{% endif %}">HTTPS</span>
+                                            {% endif %}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">{{ item.status.timestamp|default:"Never" }}</small>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if cameras|length > 15 %}
+                    <div class="text-center mt-3">
+                        <a href="{% url 'camera_list' %}" class="btn btn-sm btn-outline-primary">
+                            View All Cameras ({{ cameras|length }} total)
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="bi bi-camera-off display-4 text-muted"></i>
+                        <p class="mt-3">No cameras loaded.</p>
+                        <a href="{% url 'run_check' %}" class="btn btn-primary">
+                            <i class="bi bi-arrow-repeat"></i> Check Cameras
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div> {% endcomment %}
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="col-lg-12">
+            <!-- LOCATION SUMMARY -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-geo-alt"></i> Locations Summary
+                        <span class="badge bg-secondary float-end">{{ locations_summary|length }} locations</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if locations_summary %}
+                    <div class="list-group list-group-flush">
+                        {% for location in locations_summary|slice:":8" %}
+                        <a href="{% url 'camera_list' %}?location={{ location.name|urlencode }}" 
+                           class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong>{{ location.name }}</strong>
+                                <span class="badge bg-primary">{{ location.camera_count }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mt-1">
+                                <span class="text-success">
+                                    <i class="bi bi-check-circle"></i> {{ location.up_count }} online
+                                </span>
+                                <span class="text-danger">
+                                    <i class="bi bi-x-circle"></i> {{ location.down_count }} offline
+                                </span>
+                            </div>
+                            {% if location.camera_count > 0 %}
+                            <div class="progress mt-2" style="height: 5px;">
+                                <div class="progress-bar bg-success" 
+                                     style="width: {% widthratio location.up_count location.camera_count 100 %}%">
+                                </div>
+                            </div>
+                            {% endif %}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="{% url 'locations_list' %}" class="btn btn-sm btn-outline-primary">
+                            View All Locations
+                        </a>
+                        <a href="{% url 'download_all_locations' %}" class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-download"></i> Download All
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="bi bi-geo-alt display-4 text-muted"></i>
+                        <p class="mt-3">No location data found.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% comment %} <!-- RECENT CHECKS -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-clock-history"></i> Recent Checks</h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_history %}
+                    <div class="list-group list-group-flush">
+                        {% for check in recent_history|slice:":5" %}
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <strong>{{ check.name }}</strong>
+                                <small class="text-muted">{{ check.timestamp|slice:"11:19" }}</small>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="{% if check.ping == 'UP' %}text-success{% else %}text-danger{% endif %}">
+                                    {{ check.ping }}
+                                </span>
+                                <small>
+                                    RTSP:
+                                    <span class="{% if check.rtsp == 'UP' %}text-success{% else %}text-danger{% endif %}">{{ check.rtsp }}</span>
+                                    |
+                                    HTTP:
+                                    <span class="{% if check.http == 'UP' %}text-success{% else %}text-danger{% endif %}">{{ check.http }}</span>
+                                </small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="{% url 'status_history' %}" class="btn btn-sm btn-outline-primary">
+                            View Full History
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-3">
+                        <i class="bi bi-clock display-4 text-muted"></i>
+                        <p class="mt-2 mb-0">No checks recorded yet.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- CRITICAL ALERTS -->
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-exclamation-triangle"></i> Critical Alerts
+                        {% if critical_down_cameras %}
+                        <span class="badge bg-danger float-end">{{ critical_down_cameras|length }} DOWN</span>
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if critical_down_cameras %}
+                        {% for item in critical_down_cameras|slice:":3" %}
+                        <div class="alert alert-danger d-flex align-items-center mb-2">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <div>
+                                <strong>{{ item.camera.name }}</strong><br>
+                                <small>{{ item.camera.ip }} • {{ item.camera.location }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% if critical_down_cameras|length > 3 %}
+                        <div class="text-center">
+                            <a href="{% url 'camera_list' %}?status=OFFLINE&priority=CRITICAL" 
+                               class="btn btn-sm btn-outline-danger">
+                                View All ({{ critical_down_cameras|length }} critical down)
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="text-center py-3">
+                            <i class="bi bi-check-circle text-success fs-1"></i>
+                            <p class="mt-2 mb-0">No critical cameras are down</p>
+                            <small class="text-muted">All critical cameras are online</small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

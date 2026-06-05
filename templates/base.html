@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Camera Monitor{% endblock %}</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color:#2c3e50;
+      --secondary-color:#34495e;
+      --accent-color:#3498db;
+      --success:#27ae60;
+      --danger:#e74c3c;
+    }
+
+    body { background:#f8fafc; }
+
+    .navbar {
+      background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));
+    }
+
+    /* ===== MONITOR WIDGET ===== */
+    .monitor-status-widget {
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      padding:12px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.2);
+      min-width:320px;
+    }
+
+    .monitor-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:#fff;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .monitor-items {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .monitor-box {
+      background:rgba(255,255,255,0.12);
+      border-radius:6px;
+      padding:8px;
+      text-align:center;
+    }
+
+    .monitor-label {
+      font-size:11px;
+      color:#ddd;
+      text-transform:uppercase;
+    }
+
+    .monitor-value {
+      font-family:monospace;
+      font-size:15px;
+      font-weight:700;
+      color:#f1c40f;
+    }
+
+    .email-timer {
+      color:#e74c3c;
+      animation:pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%{opacity:1}
+      50%{opacity:.6}
+      100%{opacity:1}
+    }
+  </style>
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <i class="bi bi-camera-video"></i> Skaps Camera Monitor
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <!-- ===== ORIGINAL NAV LINKS (UNCHANGED) ===== -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+             href="{% url 'dashboard' %}">
+            <i class="bi bi-speedometer2"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'camera_list' %}active{% endif %}"
+             href="{% url 'camera_list' %}">
+            <i class="bi bi-camera"></i> Cameras
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'locations_list' %}active{% endif %}"
+             href="{% url 'locations_list' %}">
+            <i class="bi bi-geo-alt"></i> Locations
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'status_history' %}active{% endif %}"
+             href="{% url 'status_history' %}">
+            <i class="bi bi-clock-history"></i> History
+          </a>
+        </li>
+        {% comment %} <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'email_config' %}active{% endif %}"
+             href="{% url 'email_config' %}">
+            <i class="bi bi-envelope"></i> Email Alerts
+          </a>
+        </li> {% endcomment %}
+      </ul>
+
+      <!-- ===== MONITOR STATUS WIDGET ===== -->
+      <div class="monitor-status-widget">
+        <div class="monitor-header">
+          <div>
+            <i class="bi bi-circle-fill text-success"></i>
+            SYSTEM ACTIVE
+          </div>
+          <i class="bi bi-envelope-fill text-warning"></i>
+        </div>
+
+        <div class="monitor-items">
+          <!-- LAST CHECK -->
+          <div class="monitor-box">
+            <div class="monitor-label">Last Check</div>
+            <div class="monitor-value">
+              {% if monitor_info.last_check %}
+                 {{ monitor_info.last_check }}
+              {% else %}
+                Never
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- NEXT EMAIL -->
+          <div class="monitor-box">
+            <div class="monitor-label">Next Email In</div>
+            <div id="email-time" class="monitor-value email-timer">
+              00:00:00
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===== END WIDGET ===== -->
+
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+
+<footer class="bg-dark text-white text-center py-2 mt-5">
+  <small>
+    <i class="bi bi-clock"></i>
+    Current Time: <span id="current-time">--:--:--</span>
+  </small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // ===== EMAIL TIMER =====
+  function updateEmailTimer() {
+    const now = new Date();
+    let next = new Date();
+    next.setHours(8,0,0,0);
+    if (now > next) next.setDate(next.getDate() + 1);
+
+    const d = next - now;
+    const h = String(Math.floor(d/3600000)).padStart(2,'0');
+    const m = String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    const s = String(Math.floor(d%60000/1000)).padStart(2,'0');
+
+    document.getElementById("email-time").textContent = `${h}:${m}:${s}`;
+  }
+
+  function updateClock() {
+    document.getElementById("current-time").textContent =
+      new Date().toLocaleTimeString();
+  }
+
+  setInterval(updateEmailTimer,1000);
+  setInterval(updateClock,1000);
+  updateEmailTimer();
+  updateClock();
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

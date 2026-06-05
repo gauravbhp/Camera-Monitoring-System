@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+
+{% block title %}All Cameras{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-camera-video"></i> All Cameras
+                        <span class="badge bg-secondary ms-2">
+                            {% if location_filter or status_filter or priority_filter %}
+                                Showing {{ filtered_cameras }} of {{ total_cameras }} cameras
+                            {% else %}
+                                {{ total_cameras }} total cameras
+                            {% endif %}
+                        </span>
+                    </h5>
+                    <div>
+                        <a href="{% url 'dashboard' %}" class="btn btn-sm btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Dashboard
+                        </a>
+                        {% comment %} <a href="{% url 'run_check' %}" class="btn btn-sm btn-warning">
+                            <i class="bi bi-arrow-repeat"></i> Check All Cameras Now
+                        </a> {% endcomment %}
+                        <a href="{% url 'download_csv' %}" class="btn btn-sm btn-success">
+                            <i class="bi bi-download"></i> Download All
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Filters -->
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <form method="get" class="row g-2">
+                            <!-- Location Filter -->
+                            <div class="col-md-3">
+                                <label class="form-label small mb-1">Location</label>
+                                <select name="location" class="form-select form-select-sm">
+                                    <option value="">All Locations</option>
+                                    {% for loc in locations %}
+                                    <option value="{{ loc }}" {% if location_filter == loc %}selected{% endif %}>
+                                        {{ loc }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <!-- Status Filter -->
+                            {% comment %} <div class="col-md-3">
+                                <label class="form-label small mb-1">Status</label>
+                                <select name="status" class="form-select form-select-sm">
+                                    <option value="">All Status</option>
+                                    <option value="ONLINE" {% if status_filter == 'ONLINE' %}selected{% endif %}>Online</option>
+                                    <option value="OFFLINE" {% if status_filter == 'OFFLINE' %}selected{% endif %}>Offline</option>
+                                    <option value="UNKNOWN" {% if status_filter == 'UNKNOWN' %}selected{% endif %}>Unknown</option>
+                                </select>
+                            </div> {% endcomment %}
+                            
+                            <!-- Priority Filter -->
+                            {% comment %} <div class="col-md-2">
+                                <label class="form-label small mb-1">Priority</label>
+                                <select name="priority" class="form-select form-select-sm">
+                                    <option value="">All Priorities</option>
+                                    <option value="CRITICAL" {% if priority_filter == 'CRITICAL' %}selected{% endif %}>Critical</option>
+                                    <option value="NORMAL" {% if priority_filter == 'NORMAL' %}selected{% endif %}>Normal</option>
+                                </select>
+                            </div> {% endcomment %}
+                            
+                            <!-- Action Buttons -->
+                            <div class="col-md-4 d-flex align-items-end">
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        <i class="bi bi-filter"></i> Apply Filters
+                                    </button>
+                                    {% if location_filter or status_filter or priority_filter %}
+                                    <a href="{% url 'camera_list' %}" class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-x-circle"></i> Clear All
+                                    </a>
+                                    {% endif %}
+                                    {% if location_filter %}
+                                    <a href="{% url 'download_location' %}?location={{ location_filter|urlencode }}" 
+                                       class="btn btn-sm btn-success">
+                                        <i class="bi bi-download"></i> Download Location
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Active Filters Display -->
+                {% if location_filter or status_filter or priority_filter %}
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="alert alert-info py-2 mb-0">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <i class="bi bi-filter"></i> Active filters:
+                                    {% if location_filter %}
+                                    <span class="badge bg-primary ms-2">
+                                        Location: {{ location_filter }}
+                                    </span>
+                                    {% endif %}
+                                    {% if status_filter %}
+                                    <span class="badge {% if status_filter == 'ONLINE' %}bg-success{% elif status_filter == 'OFFLINE' %}bg-danger{% else %}bg-secondary{% endif %} ms-2">
+                                        Status: {{ status_filter }}
+                                    </span>
+                                    {% endif %}
+                                    {% comment %} {% if priority_filter %}
+                                    <span class="badge {% if priority_filter == 'CRITICAL' %}bg-danger{% else %}bg-info{% endif %} ms-2">
+                                        Priority: {{ priority_filter }}
+                                    </span>
+                                    {% endif %} {% endcomment %}
+                                </div>
+                                <div>
+                                    <small>
+                                        Showing {{ filtered_cameras }} of {{ total_cameras }} cameras
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Quick Status Filter Buttons -->
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="d-flex flex-wrap gap-2">
+                            <small class="me-2 text-muted">Quick filters:</small>
+                            <a href="?status=ONLINE" class="btn btn-sm btn-outline-success">
+                                <i class="bi bi-check-circle"></i> Online ({{ online_count }})
+                            </a>
+                            <a href="?status=OFFLINE" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-x-circle"></i> Offline ({{ offline_count }})
+                            </a>
+                            <a href="?status=UNKNOWN" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-question-circle"></i> Unknown ({{ unknown_count }})
+                            </a>
+                            {% comment %} <a href="?priority=CRITICAL" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-exclamation-triangle"></i> Critical ({{ critical_count }})
+                            </a>
+                            <a href="?{% if location_filter %}location={{ location_filter }}&{% endif %}status=OFFLINE&priority=CRITICAL" 
+                               class="btn btn-sm btn-outline-warning">
+                                <i class="bi bi-exclamation-octagon"></i> Critical & Offline
+                            </a> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination Info -->
+                {% if total_pages > 1 %}
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="alert alert-light py-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-info-circle"></i> 
+                                    Showing cameras {{ start_idx|add:1 }} to {{ end_idx|default:filtered_cameras }} of {{ filtered_cameras }}
+                                    (Page {{ current_page }} of {{ total_pages }})
+                                </div>
+                                <div>
+                                    {% if current_page > 1 %}
+                                    <a href="?page={{ current_page|add:-1 }}{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-chevron-left"></i> Previous
+                                    </a>
+                                    {% endif %}
+                                    
+                                    {% if current_page < total_pages %}
+                                    <a href="?page={{ current_page|add:1 }}{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        Next <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if cameras %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Camera Name</th>
+                                <th>IP Address</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Ports</th>
+                                <th>Last Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cameras %}
+                            <tr>
+                                <td>{{ item.camera.id }}</td>
+                                <td><strong>{{ item.camera.name }}</strong></td>
+                                <td><code>{{ item.camera.ip }}</code></td>
+                                <td>{{ item.camera.location }}</td>
+                                <td>
+                                    {% if item.status.ping %}
+                                        {% if item.status.ping == 'UP' %}
+                                            <span class="status-badge status-up">ONLINE</span>
+                                        {% elif item.status.ping == 'DOWN' %}
+                                            <span class="status-badge status-down">OFFLINE</span>
+                                        {% else %}
+                                            <span class="status-badge status-unknown">{{ item.status.ping }}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="status-badge status-unknown">UNKNOWN</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.camera.critical == 'YES' %}
+                                        <span class="badge bg-danger">CRITICAL</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">NORMAL</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        {% if item.status.rtsp %}
+                                            {% if item.status.rtsp == 'UP' %}
+                                                <span class="badge bg-success" style="font-size: 0.7rem;">RTSP ✓</span>
+                                            {% elif item.status.rtsp == 'DOWN' %}
+                                                <span class="badge bg-danger" style="font-size: 0.7rem;">RTSP ✗</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">RTSP -</span>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        {% if item.status.http %}
+                                            {% if item.status.http == 'UP' %}
+                                                <span class="badge bg-success" style="font-size: 0.7rem;">HTTP ✓</span>
+                                            {% elif item.status.http == 'DOWN' %}
+                                                <span class="badge bg-danger" style="font-size: 0.7rem;">HTTP ✗</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">HTTP -</span>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        {% if item.status.https %}
+                                            {% if item.status.https == 'UP' %}
+                                                <span class="badge bg-success" style="font-size: 0.7rem;">HTTPS ✓</span>
+                                            {% elif item.status.https == 'DOWN' %}
+                                                <span class="badge bg-danger" style="font-size: 0.7rem;">HTTPS ✗</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">HTTPS -</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        {{ item.status.timestamp|default:"Never checked" }}
+                                    </small>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Bottom Pagination -->
+                {% if total_pages > 1 %}
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <nav aria-label="Camera pagination">
+                            <ul class="pagination justify-content-center pagination-sm">
+                                {% if current_page > 1 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">
+                                        First
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ current_page|add:-1 }}{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                
+                                {% for page_num in page_range %}
+                                    {% if page_num == current_page %}
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ page_num }}</span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_num }}{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">
+                                            {{ page_num }}
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                {% if current_page < total_pages %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ current_page|add:1 }}{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ total_pages }}{% if location_filter %}&location={{ location_filter }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">
+                                        Last
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Status Summary -->
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body py-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <small class="text-muted">Status Summary:</small>
+                                        <span class="badge bg-success ms-2">Online: {{ online_count }}</span>
+                                        <span class="badge bg-danger ms-2">Offline: {{ offline_count }}</span>
+                                        <span class="badge bg-secondary ms-2">Unknown: {{ unknown_count }}</span>
+                                        <span class="badge bg-warning text-dark ms-2">Critical: {{ critical_count }}</span>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted">
+                                            Last updated: {{ last_update_time }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="bi bi-camera-off display-4 text-muted"></i>
+                    <p class="mt-3">No cameras found matching your filter.</p>
+                    <a href="{% url 'camera_list' %}" class="btn btn-primary">
+                        <i class="bi bi-eye"></i> Show All Cameras
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Dashboard
+    </a>
+</div>
+{% endblock %}

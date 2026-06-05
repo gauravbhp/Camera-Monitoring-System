@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Status History{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>Status History</h3>
+                <div>
+                    <a href="{% url 'download_history' %}" class="btn btn-success btn-sm">
+                        <i class="bi bi-download"></i> Download
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-arrow-left"></i> Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">Showing last {{ limit }} records</p>
+            
+            {% if history %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Camera</th>
+                            <th>IP</th>
+                            <th>Status</th>
+                            <th>RTSP</th>
+                            <th>HTTP</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for check in history %}
+                        <tr>
+                            <td>{{ check.timestamp }}</td>
+                            <td>{{ check.name }}</td>
+                            <td><code>{{ check.ip }}</code></td>
+                            <td>
+                                {% if check.ping == 'UP' %}
+                                    <span class="badge bg-success">UP</span>
+                                {% else %}
+                                    <span class="badge bg-danger">DOWN</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if check.rtsp == 'UP' %}
+                                    <span class="badge bg-success">✓</span>
+                                {% elif check.rtsp == 'DOWN' %}
+                                    <span class="badge bg-danger">✗</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if check.http == 'UP' %}
+                                    <span class="badge bg-success">✓</span>
+                                {% elif check.http == 'DOWN' %}
+                                    <span class="badge bg-danger">✗</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">-</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ check.location }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-muted">Total: {{ history|length }} records</p>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> No status history recorded yet.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

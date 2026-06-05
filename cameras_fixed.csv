@@ -1,0 +1,579 @@
+name,ip,location,critical
+Lobby 1,192.168.3.17,AO 7th Floor,YES
+Workstation,192.168.3.18,AO 7th Floor,YES
+HR Table,192.168.3.25,AO 7th Floor,YES
+Kitchen,192.168.3.19,AO 7th Floor,YES
+Lobby 2,192.168.3.20,AO 7th Floor,YES
+Workstation 2,192.168.3.21,AO 7th Floor,YES
+HR Area 2,192.168.3.22,AO 7th Floor,YES
+Pantry,192.168.3.23,AO 7th Floor,YES
+Lobby 3,192.168.3.24,AO 7th Floor,YES
+Reception,192.168.3.33,AO 7th Floor,YES
+Store Room,192.168.3.40,AO 7th Floor,YES
+Main Entry,192.168.3.39,AO 7th Floor,YES
+Gate Inside,192.168.3.29,AO 7th Floor,YES
+Gate,192.168.3.31,AO 2nd Floor,YES
+Workstation-1,192.168.3.32,AO 2nd Floor,YES
+Server room,192.168.3.34,AO 2nd Floor,YES
+Work station 3,192.168.3.35,AO 2nd Floor,YES
+Workstation-4,192.168.3.26,AO 2nd Floor,YES
+Conf. Side,192.168.3.36,AO 2nd Floor,YES
+Kitchen,192.168.3.27,AO 2nd Floor,YES
+Workstation-5,192.168.3.37,AO 2nd Floor,YES
+Workstation-6,192.168.3.28,AO 2nd Floor,YES
+Reception,192.168.3.38,AO 2nd Floor,YES
+PASSAGE -01,192.168.5.37,Moraiya,YES
+Behind extruder,192.168.5.30,Moraiya,YES
+Silo feeding Area,192.168.5.28,Moraiya,YES
+TRAINING ROOM,192.168.5.26,Moraiya,YES
+OFFICE CANTEEN,192.168.5.36,Moraiya,YES
+PANTRY,192.168.5.35,Moraiya,YES
+Dock-2,192.168.5.27,Moraiya,YES
+finish good area,192.168.5.31,Moraiya,YES
+WORK STATION - 02,192.168.5.39,Moraiya,YES
+RECEPTION,192.168.5.40,Moraiya,YES
+PASSAGE - 02,192.168.5.41,Moraiya,YES
+PASSAGE-03,192.168.5.34,Moraiya,YES
+Main Gate,192.168.5.32,Moraiya,YES
+WORK STATION 01,192.168.5.38,Moraiya,YES
+Electrical,192.168.5.44,Moraiya,YES
+Utility,192.168.5.43,Moraiya,YES
+New plant side passage-1,192.168.5.45,Moraiya,YES
+HT Yard,192.168.5.33,Moraiya,YES
+New plant side passage-2,192.168.5.42,Moraiya,YES
+New admin backside,192.168.5.46,Moraiya,YES
+Mono plant-1,192.168.5.47,Moraiya,YES
+Mono plant backside,192.168.5.48,Moraiya,YES
+Mono plant entrance,192.168.5.49,Moraiya,YES
+Mono plant 2,192.168.5.82,Moraiya,YES
+Mono plant backgate,192.168.5.81,Moraiya,YES
+Mono beamer head,192.168.5.84,Moraiya,YES
+Looms passage,192.168.5.83,Moraiya,YES
+Server Room,192.168.5.25,Moraiya,YES
+Office Main Gate,192.168.5.23,Moraiya,YES
+SHIPPING,192.168.5.85,Moraiya,YES
+Camera 01,192.168.0.73,SAVLI Inside,YES
+Camera 01,192.168.0.74,SAVLI Inside,YES
+Warping MC,192.168.0.75,SAVLI Inside,YES
+Biaxial-1,192.168.0.76,SAVLI Inside,YES
+Biaxial-2,192.168.0.77,SAVLI Inside,YES
+Multiaxial,192.168.0.78,SAVLI Inside,YES
+Major-1,192.168.0.79,SAVLI Inside,YES
+Lab-1,192.168.0.80,SAVLI Inside,YES
+Lab-2,192.168.0.81,SAVLI Inside,YES
+Store,192.168.0.82,SAVLI Inside,YES
+finish good -1,192.168.0.83,SAVLI Inside,YES
+finish good -2,192.168.0.84,SAVLI Inside,YES
+Major-2,192.168.0.85,SAVLI Inside,YES
+old lab,192.168.0.88,SAVLI Inside,YES
+workstation,192.168.0.89,SAVLI Inside,YES
+Lobby-1,192.168.0.90,SAVLI Inside,YES
+Lobby-2,192.168.0.91,SAVLI Inside,YES
+Lobby-3,192.168.0.92,SAVLI Inside,YES
+Waste,192.168.0.94,SAVLI Inside,YES
+1st floor entry,192.168.0.95,SAVLI Inside,YES
+Mazzanine,192.168.0.96,SAVLI Inside,YES
+Back Gate,192.168.0.69,SAVLI Inside,YES
+Back garden -2,192.168.0.70,SAVLI Inside,YES
+Back garden -3,192.168.0.71,SAVLI Inside,YES
+Back garden -4,192.168.0.72,SAVLI Inside,YES
+Canteen,192.168.0.86,SAVLI Inside,YES
+Kitchen,192.168.0.87,SAVLI Inside,YES
+Back garden -1,192.168.0.93,SAVLI Inside,YES
+Major-3,192.168.0.59,SAVLI Inside,YES
+Dornier,192.168.0.60,SAVLI Inside,YES
+Garden,192.168.0.62,SAVLI Outside,YES
+Main Gate-1,192.168.0.67,SAVLI Outside,YES
+Admin Door,192.168.0.61,SAVLI Outside,YES
+Dock,192.168.0.66,SAVLI Outside,YES
+Parking,192.168.0.64,SAVLI Outside,YES
+DG,192.168.0.63,SAVLI Outside,YES
+Main Gate,192.168.0.68,SAVLI Outside,YES
+Security Cabin,192.168.21.21,Chennai 1,YES
+Entry Gate,192.168.21.23,Chennai 1,YES
+Camera 01,192.168.21.24,Chennai 1,YES
+Parking Area,192.168.21.25,Chennai 1,YES
+Main Road Canteen-Security,192.168.21.26,Chennai 1,YES
+Canteen Outside Door,192.168.21.27,Chennai 1,YES
+HT Yard Road,192.168.21.28,Chennai 1,YES
+DG,192.168.21.31,Chennai 1,YES
+Cooling Tower Area,192.168.21.32,Chennai 1,YES
+HT Yard,192.168.21.33,Chennai 1,YES
+Rolling Shutter-1 Entry,192.168.21.40,Chennai 1,YES
+Emergency Door-07,192.168.21.37,Chennai 1,YES
+Emergency Door-04,192.168.21.29,Chennai 1,YES
+Air Receiver Tank-02,192.168.21.34,Chennai 1,YES
+Main Road Security-Canteen,192.168.21.22,Chennai 1,YES
+Assembly Point,192.168.21.20,Chennai 1,YES
+Camera 01,192.168.21.92,Chennai 1,YES
+Emergency Door-08,192.168.21.39,Chennai 1,YES
+Camera 01,192.168.21.38,Chennai 1,YES
+HT Yard Back Side Road,192.168.21.35,Chennai 1,YES
+Camera 01,192.168.21.93,Chennai 1,YES
+Camera 01,192.168.21.94,Chennai 1,YES
+Stitching M/C-02 & 03,192.168.21.95,Chennai 1,YES
+Camera 01,192.168.21.96,Chennai 1,YES
+Stitching M/C- 01 & 02,192.168.21.97,Chennai 1,YES
+Dock-02,192.168.21.98,Chennai 1,YES
+Dock-01,192.168.21.99,Chennai 1,YES
+Dock-03,192.168.21.100,Chennai 1,YES
+Veeda M/C Dust Collector,192.168.21.118,Chennai 1,YES
+CH_IN_Locker,192.168.21.44,Chennai 2,YES
+CH_IN_WRHS_R14-16,192.168.21.45,Chennai 2,YES
+CH_IN_WRHS_R11-14,192.168.21.46,Chennai 2,YES
+CH_IN_WRHS_R10-12,192.168.21.47,Chennai 2,YES
+CH_IN_WRHS_R08-10,192.168.21.48,Chennai 2,YES
+CH_IN_WRHS_R06-08,192.168.21.49,Chennai 2,YES
+CH_IN_WRHS_R04-06,192.168.21.50,Chennai 2,YES
+CH_IN_WRHS_R02-03,192.168.21.51,Chennai 2,YES
+CH_IN_ADMIN,192.168.21.52,Chennai 2,YES
+CH_IN_LAB_01,192.168.21.53,Chennai 2,YES
+CH_IN_CANTEEN_01,192.168.21.54,Chennai 2,YES
+CH_IN_WRHS_IQC,192.168.21.55,Chennai 2,YES
+CH_IN_WALKWAY_Utility,192.168.21.56,Chennai 2,YES
+CH_IN_WALKWAY_MAIN,192.168.21.57,Chennai 2,YES
+CH_IN_GK_ FG,192.168.21.58,Chennai 2,YES
+CH_IN_GK_MAIN_ENTRANCE,192.168.21.59,Chennai 2,YES
+CH_IN_GK_ST1_FRAME_B,192.168.21.60,Chennai 2,YES
+CH_IN_GK_ST1_HEAD,192.168.21.62,Chennai 2,YES
+CH_IN_GK_ST1_FRAME_A,192.168.21.64,Chennai 2,YES
+CH_IN_GK_STR1&2,192.168.21.65,Chennai 2,YES
+CH_IN_GK_LECTRA_RLHDR,192.168.21.66,Chennai 2,YES
+CH_IN_GK_CNTR,192.168.21.67,Chennai 2,YES
+CH_IN_KNITTING_3,192.168.21.68,Chennai 2,YES
+CH_IN_KNITTTING_MEZ,192.168.21.69,Chennai 2,YES
+CH_IN_GK_AUX_STORAGE,192.168.21.70,Chennai 2,YES
+CH_IN_GK_LECTRA_CONVEYOR,192.168.21.71,Chennai 2,YES
+CH_IN_KNITTING_1,192.168.21.72,Chennai 2,YES
+CH_IN_CK_VEEDA-1,192.168.21.73,Chennai 2,YES
+CH_IN_CK_VEEDA-2,192.168.21.74,Chennai 2,YES
+CH_IN_CK_WALKWAY,192.168.21.75,Chennai 2,YES
+CH_IN_GK_AUX_STORAGE,192.168.21.76,Chennai 2,YES
+CH_IN_CK_WALKWAY00,192.168.21.77,Chennai 2,YES
+CH_IN_CK_CNC-8WALL,192.168.21.78,Chennai 2,YES
+CH_IN_CK_CNC4_WALL,192.168.21.79,Chennai 2,YES
+CH_IN_CK_CNC3_WALL,192.168.21.80,Chennai 2,YES
+CH_IN_CK_CNC8_WALL,192.168.21.81,Chennai 2,YES
+CH_IN_CK_CNC7_WALL,192.168.21.82,Chennai 2,YES
+CH_IN_CK_CNC5_WALL,192.168.21.83,Chennai 2,YES
+CH_IN_CK_CNC3_WALL,192.168.21.84,Chennai 2,YES
+CH_IN_LTROOM,192.168.21.30,Chennai 2,YES
+Camera 01,192.168.21.63,Chennai 2,YES
+CH_IN_SERVERROOM,192.168.21.85,Chennai 2,YES
+CH_IN_CK_ALLCNC,192.168.21.86,Chennai 2,YES
+CH_IN_CK_VT_00,192.168.21.87,Chennai 2,YES
+CH_IN_CK_VT_000,192.168.21.88,Chennai 2,YES
+CH_IN_CK_VT_001,192.168.21.89,Chennai 2,YES
+CH_IN_CK_VT_1,192.168.21.90,Chennai 2,YES
+CH_IN_CK_VT_01,192.168.21.91,Chennai 2,YES
+Camera 01,192.168.21.101,Chennai 2,YES
+Camera 01,192.168.21.102,Chennai 2,YES
+IPCamera 51,192.168.21.103,Chennai 2,YES
+Camera 01,192.168.21.104,Chennai 2,YES
+Camera 01,192.168.21.105,Chennai 2,YES
+Camera 01,192.168.21.106,Chennai 2,YES
+Camera 01,192.168.21.107,Chennai 2,YES
+Camera 01,192.168.21.108,Chennai 2,YES
+Camera 01,192.168.21.109,Chennai 2,YES
+IPCamera 58,192.168.21.110,Chennai 2,YES
+IPCamera 59,192.168.21.111,Chennai 2,YES
+IPCamera 60,192.168.21.112,Chennai 2,YES
+IPCamera 61,192.168.21.113,Chennai 2,YES
+Camera 01,192.168.21.114,Chennai 2,YES
+Camera 01,192.168.21.115,Chennai 2,YES
+Camera 01,192.168.21.116,Chennai 2,YES
+Dock,192.168.6.44,Unit 1,YES
+NEW Dock,192.168.6.161,Unit 1,YES
+Security Office,192.168.6.2,Unit 1,YES
+Plant Gate Entry Outside,192.168.6.1,Unit 1,YES
+Plant Gate Entry Inside,192.168.6.12,Unit 1,YES
+Parking Road,192.168.6.20,Unit 1,YES
+Guest House Side Road,192.168.6.19,Unit 1,YES
+Canteen Outside,192.168.6.50,Unit 1,YES
+Canteen,192.168.6.49,Unit 1,YES
+Locker Room,192.168.6.10,Unit 1,YES
+Camera 01,192.168.6.38,Unit 1,YES
+Plant Shutter Entry,192.168.6.29,Unit 1,YES
+Plant Shutter Entry Looms Side,192.168.6.68,Unit 1,YES
+Looms-01,192.168.6.69,Unit 1,YES
+Looms-02,192.168.6.70,Unit 1,YES
+Looms-03,192.168.6.71,Unit 1,YES
+Looms-04,192.168.6.72,Unit 1,YES
+Near Staff Toilet,192.168.6.73,Unit 1,YES
+Behind Beamer,192.168.6.33,Unit 1,YES
+Rack,192.168.6.31,Unit 1,YES
+Near Store Entry,192.168.6.32,Unit 1,YES
+Store,192.168.6.27,Unit 1,YES
+Store-1,192.168.6.28,Unit 1,YES
+Utility Area,192.168.6.47,Unit 1,YES
+Ele. Room,192.168.6.34,Unit 1,YES
+Chiller Room,192.168.6.48,Unit 1,YES
+Extruder Winder Side,192.168.6.40,Unit 1,YES
+Extruder Front,192.168.6.41,Unit 1,YES
+Extruder Office,192.168.6.46,Unit 1,YES
+NEW SHED-03,192.168.6.18,Unit 1,YES
+Entry Gate Near CAMS PC,192.168.6.45,Unit 1,YES
+Beamer Side Near CAMS PC,192.168.6.43,Unit 1,YES
+Camera 01,192.168.6.42,Unit 1,YES
+unit-1 conf.room entrance,192.168.6.39,Unit 1,YES
+U-1 to U-2 Walkway,192.168.6.164,Unit 1,YES
+RO room unit-1,192.168.6.165,Unit 1,YES
+workshop area unit-1,192.168.6.163,Unit 1,YES
+extruder panel room,192.168.6.78,Unit 1,YES
+Unit-1 canteen kitchen,192.168.6.75,Unit 1,YES
+Canteen Outside area,192.168.6.162,Unit 1,YES
+Dock-1,192.168.7.26,Unit 2,YES
+Dock-2,192.168.7.27,Unit 2,YES
+Dock-3,192.168.7.28,Unit 2,YES
+Dock-4,192.168.7.29,Unit 2,YES
+U2 Scrape Area,192.168.7.115,Unit 2,YES
+Shutter,192.168.7.13,Unit 2,YES
+Dock Floor-1,192.168.7.17,Unit 2,YES
+Dock Floor-2,192.168.7.10,Unit 2,YES
+U2WareHouse 01,192.168.7.161,Unit 2,YES
+U2Warehouse 02,192.168.7.162,Unit 2,YES
+U2WareHouse 03,192.168.7.163,Unit 2,YES
+U2WareHouse 04,192.168.7.164,Unit 2,YES
+U2 Outside WareHouse,192.168.7.165,Unit 2,YES
+U2WareHouse 06,192.168.7.166,Unit 2,YES
+New FiberLine 5,192.168.7.167,Unit 2,YES
+Outside Silo,192.168.7.73,Unit 2,YES
+Finish Good,192.168.7.31,Unit 2,YES
+Baler,192.168.7.32,Unit 2,YES
+U2 NGR,192.168.7.168,Unit 2,YES
+Spinning Section New Fiberline,192.168.7.169,Unit 2,YES
+New FiberLine 02,192.168.7.119,Unit 2,YES
+Camera 01,192.168.7.118,Unit 2,YES
+New FiberLine 01,192.168.7.117,Unit 2,YES
+Camera 01,192.168.7.116,Unit 2,YES
+Camera 01,192.168.7.19,Unit 2,YES
+U1 Cooling Tower,192.168.7.30,Unit 2,YES
+Unit-2 Line Office,192.168.7.14,Unit 2,YES
+Security Cabin,192.168.8.14,Anjani,YES
+Main gate-1,192.168.8.15,Anjani,YES
+Entry Gate,192.168.10.31,Anjani,YES
+New AHU,192.168.8.64,Anjani,YES
+Canteen Road,192.168.8.12,Anjani,YES
+B/H SM 06,192.168.8.42,Anjani,YES
+Anjani Server Room,192.168.10.5,Anjani,YES
+camera,192.168.8.229,Anjani,YES
+New Dock 3,192.168.8.25,Anjani,YES
+New Dock 2,192.168.8.26,Anjani,YES
+New Dock 1,192.168.8.27,Anjani,YES
+New Dock 4,192.168.8.28,Anjani,YES
+Store,192.168.8.222,Anjani,YES
+Store-1,192.168.8.221,Anjani,YES
+SM-05 Winder,192.168.8.216,Anjani,YES
+Pantherlooms-1,192.168.8.215,Anjani,YES
+Pantherlooms-Maintanance,192.168.8.219,Anjani,YES
+Panther Office entry,192.168.8.220,Anjani,YES
+SM-06 Winder,192.168.8.214,Anjani,YES
+SM07,192.168.8.230,Anjani,YES
+Shipping,192.168.8.223,Anjani,YES
+Pantherlooms-9,192.168.8.224,Anjani,YES
+Pantherlooms-7,192.168.8.227,Anjani,YES
+Pantherlooms-11,192.168.8.225,Anjani,YES
+Pantherlooms-10,192.168.8.226,Anjani,YES
+Pantherlooms-12,192.168.8.228,Anjani,YES
+Pantherlooms-5,192.168.8.232,Anjani,YES
+Pantherlooms-13,192.168.8.2,Anjani,YES
+FBG,192.168.8.236,Anjani,YES
+FBG-1,192.168.8.238,Anjani,YES
+LAB,192.168.8.240,Anjani,YES
+FBG-4,192.168.8.49,Anjani,YES
+FBG-6,192.168.8.31,Anjani,YES
+SM01,192.168.8.239,Anjani,YES
+FBG-Office,192.168.8.241,Anjani,YES
+SM01-Back,192.168.8.243,Anjani,YES
+SM01-Back1,192.168.8.38,Anjani,YES
+Washroom Entry,192.168.8.206,Anjani,YES
+Magnine,192.168.8.53,Anjani,YES
+Warping M/C,192.168.8.244,Anjani,YES
+SM02-Back,192.168.8.242,Anjani,YES
+FBG-8,192.168.8.18,Anjani,YES
+FBG-5,192.168.8.35,Anjani,YES
+FBG-7,192.168.8.32,Anjani,YES
+FBG-3,192.168.8.36,Anjani,YES
+FBG-2,192.168.8.41,Anjani,YES
+SM03-1,192.168.8.235,Anjani,YES
+SM03,192.168.8.218,Anjani,YES
+SM03-Backside,192.168.8.237,Anjani,YES
+Multiexcel-1,192.168.8.211,Anjani,YES
+SM02-Backside1,192.168.8.6,Anjani,YES
+Multiexcel-2,192.168.8.212,Anjani,YES
+New Doc2,192.168.8.60,Anjani,YES
+1st Floor-1,192.168.8.198,Anjani,YES
+Admin,192.168.10.28,Anjani,YES
+1st Floor-2,192.168.8.199,Anjani,YES
+1st Floor-3,192.168.8.200,Anjani,YES
+1st Floor-4,192.168.8.20,Anjani,YES
+1st Floor-5,192.168.8.203,Anjani,YES
+1st Floor-6,192.168.8.205,Anjani,YES
+1st Floor-7,192.168.8.207,Anjani,YES
+1st Floor-8,192.168.8.3,Anjani,YES
+1st Floor-9,192.168.8.202,Anjani,YES
+CNC7,192.168.8.245,Anjani 2,YES
+CNC6,192.168.8.210,Anjani 2,YES
+CNC5,192.168.8.213,Anjani 2,YES
+CNC4,192.168.8.217,Anjani 2,YES
+CNC2,192.168.8.234,Anjani 2,YES
+CNC1,192.168.8.208,Anjani 2,YES
+Camera 01,192.168.8.17,Anjani 2,YES
+LOCKER,192.168.8.209,Anjani 2,YES
+STORAGE,192.168.8.233,Anjani 2,YES
+VTX1,192.168.8.30,Anjani 2,YES
+Walkway CNC 1to3,192.168.8.246,Anjani 2,YES
+IP Camera12,192.168.8.57,Anjani 2,YES
+IP Camera13,192.168.8.231,Anjani 2,YES
+IP Camera14,192.168.8.58,Anjani 2,YES
+IP Camera15,192.168.8.59,Anjani 2,YES
+Vida Machine,192.168.8.62,Anjani 2,YES
+Camera 01,192.168.9.88,Anjani 2,YES
+Camera 01,192.168.8.16,Anjani 2,YES
+Camera 01,192.168.8.47,Anjani 2,YES
+IPCamera 20,192.168.8.34,Anjani 2,YES
+mezzanine,192.168.8.48,Anjani 2,YES
+mezzanine-1,192.168.8.76,Anjani 2,YES
+mezzanine-2,192.168.8.193,Anjani 2,YES
+mezzanine-3,192.168.8.197,Anjani 2,YES
+Maintanace room,192.168.8.204,Anjani 2,YES
+CANTEEN,192.168.8.13,Anjani 2,YES
+Canteen-1,192.168.8.247,Anjani 2,YES
+IP Camera1,192.168.10.29,Anjani 2,YES
+CNC PackTbl 07,192.168.8.155,Anjani 2,YES
+CNC PackTbl 02,192.168.8.156,Anjani 2,YES
+CNC PackTbl 06,192.168.8.157,Anjani 2,YES
+CNC PackTbl 05,192.168.8.158,Anjani 2,YES
+CNC PackTbl 04,192.168.8.159,Anjani 2,YES
+CNC PackTbl 03,192.168.8.160,Anjani 2,YES
+SM-03 Mazanine,192.168.8.161,Anjani 2,YES
+SM-08 Mezzanine,192.168.8.162,Anjani 2,YES
+SM08 Mezzanine loading,192.168.8.163,Anjani 2,YES
+SM-07 Mazzanine,192.168.8.164,Anjani 2,YES
+SB01-02 Mezzanine,192.168.8.165,Anjani 2,YES
+SB01 Backside,192.168.8.166,Anjani 2,YES
+Behind SM08,192.168.8.167,Anjani 2,YES
+Behind SM04,192.168.8.168,Anjani 2,YES
+CNC PackTbl 01,192.168.8.169,Anjani 2,YES
+Core kitting Repairing Table,192.168.8.170,Anjani 2,YES
+Security Cabin,192.168.9.72,PET,YES
+Entry Gate,192.168.9.71,PET,YES
+OUT SIDE DOCK AREA AND PARKING,192.168.8.29,PET,YES
+DOCK 3 & 4,192.168.9.40,PET,YES
+"DOCK 1&2, MAIN SHUTTER",192.168.9.41,PET,YES
+Storage,192.168.9.80,PET,YES
+Storage-1,192.168.9.81,PET,YES
+STORAGE RACK-1,192.168.9.26,PET,YES
+STORAGE RACK-2,192.168.9.27,PET,YES
+STORAGE AREA RACK,192.168.9.33,PET,YES
+ANGLE CAMERA LAB,192.168.9.30,PET,YES
+BACK SIDE DOOR,192.168.9.29,PET,YES
+ANGLE EXTRUDER SIDE,192.168.9.28,PET,YES
+SHUTTER ENTRY,192.168.9.34,PET,YES
+ADT BIN STATION,192.168.9.31,PET,YES
+EXTRUDER,192.168.9.32,PET,YES
+Extruder-1,192.168.9.73,PET,YES
+COOLING CONVEYOR & SWS M/C,192.168.9.39,PET,YES
+COOLING TOWER & CONVEYOR,192.168.9.45,PET,YES
+ANGLE STORAGE RACK,192.168.9.37,PET,YES
+WELDING M/C 3,192.168.9.36,PET,YES
+ANGLE WELDING M/C,192.168.9.35,PET,YES
+Schelling Machine,192.168.9.66,PET,YES
+SCHELLING SAW M/C,192.168.9.38,PET,YES
+Weldor-3,192.168.9.65,PET,YES
+weldor-4,192.168.9.67,PET,YES
+Weldor-2,192.168.9.64,PET,YES
+Weldor-1,192.168.9.63,PET,YES
+Weldor,192.168.9.62,PET,YES
+Robot,192.168.9.61,PET,YES
+Robot-1,192.168.9.79,PET,YES
+SLITTER & ROBOT-2,192.168.9.44,PET,YES
+HEMA OPERATING&FINAL SHEET PCK,192.168.9.43,PET,YES
+ANGLE CAMERA PLANNER-2,192.168.9.42,PET,YES
+BALER M/C,192.168.9.46,PET,YES
+STORAGE AREA 1,192.168.9.47,PET,YES
+FORKLIFT CHARGING AREA,192.168.9.48,PET,YES
+FLYING SAW AND WORKSHOP,192.168.9.49,PET,YES
+SAW M/C PALLMANN,192.168.9.51,PET,YES
+PALLMANN M/C AREA,192.168.9.50,PET,YES
+DUST COLLECTOR AREA & DOOR,192.168.9.55,PET,YES
+CP AREA,192.168.9.54,PET,YES
+CP AREA AND SILO,192.168.9.53,PET,YES
+CP AREA OUT SIDE ROAD,192.168.9.56,PET,YES
+Finishing area-1,192.168.9.77,PET,YES
+Finishing area,192.168.9.76,PET,YES
+Form Correction Machine,192.168.9.78,PET,YES
+Washroom,192.168.9.85,PET,YES
+INVENTORY ROOM,192.168.9.58,PET,YES
+UTILITY CHILLER PLANT,192.168.9.59,PET,YES
+chemical lab,192.168.9.70,PET,YES
+LAB,192.168.9.69,PET,YES
+mechanical lab,192.168.9.68,PET,YES
+RUT Lab,192.168.9.60,PET,YES
+JB UNLOADING STATION,192.168.9.57,PET,YES
+LT Room,192.168.9.83,PET,YES
+CP PUMP ROOM,192.168.9.52,PET,YES
+Washroom,192.168.9.204,PET,YES
+Camera 01,192.168.9.203,PET,YES
+Camera 01,192.168.9.201,PET,YES
+Camera 01,192.168.9.202,PET,YES
+Camera 01,192.168.9.88,PET,YES
+Camera 01,192.168.9.211,PET,YES
+Dock-3,192.168.9.210,PET,YES
+Plant Security Cabin,192.168.11.86,Anya,YES
+Plant Gate Outside,192.168.11.84,Anya,YES
+Plan Gate Inside,192.168.11.85,Anya,YES
+Entry Gate,192.168.11.54,Anya,YES
+WH9B ENTRY,192.168.11.55,Anya,YES
+D6Parking,192.168.11.56,Anya,YES
+D7Shipping Room,192.168.11.53,Anya,YES
+Store,192.168.11.52,Anya,YES
+Walkway Near Store,192.168.11.40,Anya,YES
+Dock Corner,192.168.11.39,Anya,YES
+Dock-01,192.168.11.80,Anya,YES
+Dock-02,192.168.11.65,Anya,YES
+Dock-03,192.168.11.89,Anya,YES
+Dock-04,192.168.11.90,Anya,YES
+Stock Area Line-1,192.168.11.78,Anya,YES
+Stock Area Line-2,192.168.11.91,Anya,YES
+Stock Area Line-3,192.168.11.88,Anya,YES
+Stock Area Line-4,192.168.11.30,Anya,YES
+Stock Area Line-5,192.168.11.31,Anya,YES
+Stock Area Line-6,192.168.11.32,Anya,YES
+Stock Area Line-7,192.168.11.33,Anya,YES
+Stock Area Line-8,192.168.11.34,Anya,YES
+Stock Area Line-9,192.168.11.35,Anya,YES
+Stock Area Line-10,192.168.11.36,Anya,YES
+Stock Area Line-11,192.168.11.37,Anya,YES
+Entry Near Training Room,192.168.11.38,Anya,YES
+Near Hydrotex Entry,192.168.11.64,Anya,YES
+Hydrotex Back,192.168.11.45,Anya,YES
+Hydrotex,192.168.11.43,Anya,YES
+Walkway Near Beamer,192.168.11.44,Anya,YES
+Behind Prizm,192.168.11.42,Anya,YES
+Looms Shed Near RO,192.168.11.41,Anya,YES
+RO Plant,192.168.11.81,Anya,YES
+Looms-1,192.168.11.60,Anya,YES
+Looms-2,192.168.11.59,Anya,YES
+Looms-3,192.168.11.61,Anya,YES
+Looms-4,192.168.11.51,Anya,YES
+Production,192.168.11.49,Anya,YES
+Maintenance Room,192.168.11.48,Anya,YES
+Utility Room,192.168.11.47,Anya,YES
+Ele. Room,192.168.11.46,Anya,YES
+Bag Packing Area,192.168.11.50,Anya,YES
+Near Baler Stitching Side,192.168.11.62,Anya,YES
+Stitching Floor,192.168.11.28,Anya,YES
+Finish Goods,192.168.11.29,Anya,YES
+Near Baler Re-Roll Side,192.168.11.63,Anya,YES
+Re-rolling Machine,192.168.11.25,Anya,YES
+Re-Rolling Table,192.168.11.24,Anya,YES
+Finish Goods Area,192.168.11.27,Anya,YES
+Finish Goods Area-1,192.168.11.26,Anya,YES
+Entry Near Elec Room,192.168.11.58,Anya,YES
+Side Road Near Elec Room Entry,192.168.11.57,Anya,YES
+Stitching-01,192.168.11.23,Anya,YES
+Stitching-02,192.168.11.21,Anya,YES
+Stitching-03,192.168.11.22,Anya,YES
+Stitching-04,192.168.11.82,Anya,YES
+Admin Security Gate,192.168.11.83,Anya,YES
+Admin Gate In,192.168.11.71,Anya,YES
+Parking,192.168.11.73,Anya,YES
+Stitching-05,192.168.11.92,Anya,YES
+Canteen Lobby,192.168.11.79,Anya,YES
+Parking Lobby,192.168.11.77,Anya,YES
+Locker Room,192.168.11.75,Anya,YES
+Admin Outside,192.168.11.72,Anya,YES
+Admin Office,192.168.11.70,Anya,YES
+Camera 01,192.168.11.69,Anya,YES
+Training Room,192.168.11.67,Anya,YES
+Lab,192.168.11.68,Anya,YES
+Canteen Handwash,192.168.11.74,Anya,YES
+Canteen,192.168.11.76,Anya,YES
+Garden,192.168.11.117,Anya,YES
+Dock_Parking,192.168.11.118,Anya,YES
+Staff Parking,192.168.7.104,Unit 2,YES
+Outside Training Room,192.168.7.105,Unit 2,YES
+Entry Near Training Room,192.168.7.103,Unit 2,YES
+Training Room,192.168.7.106,Unit 2,YES
+Admin Office,192.168.7.107,Unit 2,YES
+Belar To Lab,192.168.7.77,Unit 2,YES
+Finished Goods Warehouse,192.168.7.3,Unit 2,YES
+Behind Baler,192.168.7.4,Unit 2,YES
+Walkway LT Side,192.168.7.78,Unit 2,YES
+LT Room Outside,192.168.7.101,Unit 2,YES
+LT Room,192.168.7.75,Unit 2,YES
+Fiber Panel Room,192.168.7.100,Unit 2,YES
+Panel Room Outside (LT Side),192.168.7.102,Unit 2,YES
+Outside Panel Room,192.168.7.76,Unit 2,YES
+Fiber Maintenance Room Outside,192.168.7.99,Unit 2,YES
+Fiber Maintenance Room,192.168.7.98,Unit 2,YES
+Emergency Exit Door,192.168.7.70,Unit 2,YES
+Walkway Shutter Side,192.168.7.69,Unit 2,YES
+Walkway Fiber Line,192.168.7.72,Unit 2,YES
+Fiber Line-01,192.168.7.96,Unit 2,YES
+Fiber Line-02,192.168.7.91,Unit 2,YES
+Fiber Line-03,192.168.7.90,Unit 2,YES
+Fiber Line-04,192.168.7.97,Unit 2,YES
+Fiber Line-05,192.168.7.94,Unit 2,YES
+Fiber Line-06,192.168.7.95,Unit 2,YES
+Fiber Line-07,192.168.7.92,Unit 2,YES
+Fiber Line-08,192.168.7.93,Unit 2,YES
+NGR,192.168.7.74,Unit 2,YES
+Bag Unloading Point Near Shutter,192.168.7.113,Unit 2,YES
+Behind Line 08 Hopper,192.168.7.71,Unit 2,YES
+Line-08 Bell Opener,192.168.7.89,Unit 2,YES
+Line-08,192.168.7.88,Unit 2,YES
+Line-08-01,192.168.7.87,Unit 2,YES
+Line-08 Full View,192.168.7.81,Unit 2,YES
+Line-10 Winder-1,192.168.7.85,Unit 2,YES
+Line-10,192.168.7.82,Unit 2,YES
+Line-10 Full View,192.168.7.80,Unit 2,YES
+Walkway Slitter M/C to Shutter,192.168.7.83,Unit 2,YES
+Wrapping Machine,192.168.7.86,Unit 2,YES
+Slitting Machine Side,192.168.7.84,Unit 2,YES
+Outside Lab,192.168.7.79,Unit 2,YES
+Walkway Line-08 to Shutter,192.168.7.67,Unit 2,YES
+Walkway Line-08 to Store Side,192.168.7.68,Unit 2,
+Technical Training Room,192.168.7.108,Unit 2,
+Line-08 E-House,192.168.7.50,Unit 2,
+Line-08 E-House-1,192.168.7.49,Unit 2,
+Line-08 Winder Outside Store,192.168.7.46,Unit 2,
+Line-10 Winder Outside Store,192.168.7.47,Unit 2,
+Entry Near Store,192.168.7.48,Unit 2,
+Store Office,192.168.7.112,Unit 2,
+Electrical Room,192.168.7.45,Unit 2,
+Maintenance Room,192.168.7.18,Unit 2,
+Maintenance Area,192.168.7.33,Unit 2,
+Storage Area,192.168.7.110,Unit 2,
+Inventory Room,192.168.7.24,Unit 2,
+Inventory Room-1,192.168.7.111,Unit 2,
+NW Office,192.168.7.34,Unit 2,
+Line-10 E-House,192.168.7.2,Unit 2,
+Line-10 E-House-1,192.168.7.16,Unit 2,
+Walkway Line-10 to Store,192.168.7.6,Unit 2,
+Lab,192.168.7.5,Unit 2,
+Shutter,192.168.7.13,Unit 2,
+UT2 Water Dispencer,192.168.7.114,Unit 2,
+Machine & Inventory Shop,192.168.21.123,Chennai 3,
+LT Room Gate,192.168.21.124,Chennai 3,
+CNC-3,192.168.21.117,Chennai 3,
+CNC-1,192.168.21.122,Chennai 3,
+CNC-1,192.168.21.121,Chennai 3,
+CNC-2,192.168.21.125,Chennai 3,
+CNC-2,192.168.21.119,Chennai 3,
+CNC-3,192.168.21.120,Chennai 3,
+Dock,192.168.5.207,Moraiya 3,
+canteen  - in passage,192.168.5.203,Moraiya CP Plus,
+Re-Rolling,192.168.5.202,Moraiya CP Plus,
+LOCKER ROOM,192.168.5.204,Moraiya CP Plus,
+ATTANDANCE AREA,192.168.5.205,Moraiya CP Plus,
+CAN_BACK,192.168.5.206,Moraiya CP Plus,
+CAN_FRONT,192.168.5.207,Moraiya CP Plus,
+BACK GATE,192.168.5.208,Moraiya CP Plus,
+EXTUDER,192.168.5.209,Moraiya CP Plus,
+LOOMS1,192.168.5.210,Moraiya CP Plus,
+LOOMS2,192.168.5.211,Moraiya CP Plus,
+CP IP Cam,192.168.5.212,Moraiya CP Plus,
+LOOMS MAIN,192.168.5.215,Moraiya CP Plus,
+ADMIN AREA,192.168.5.214,Moraiya CP Plus,
