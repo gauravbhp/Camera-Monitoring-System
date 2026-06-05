@@ -134,8 +134,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'  # For Outlook/Hotmail
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'itintern@skapsindia.com'  # Your Outlook email
-EMAIL_HOST_PASSWORD = 'dfskwymybrvbvdft'  
+EMAIL_HOST_USER = ''  # Your Outlook email
+EMAIL_HOST_PASSWORD = ''  
 DEFAULT_FROM_EMAIL = 'itintern@skapsindia.com'
 
 # Alert recipients
